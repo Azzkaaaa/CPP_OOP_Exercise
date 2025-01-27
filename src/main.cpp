@@ -9,18 +9,27 @@ class Mahasiswa{
         string NIM;
         string jurusan;
         int IPK;
+
+        Mahasiswa(string inputNama, string inputNIM, string inputJurusan, int inputIPK){//Constructor
+            Mahasiswa::nama = inputNama;
+            Mahasiswa::NIM = inputNIM;
+            Mahasiswa::jurusan = inputJurusan;
+            Mahasiswa::IPK = inputIPK;
+            cout << "Nama: " << Mahasiswa::nama << endl;
+            cout << "NIM: " << Mahasiswa::NIM << endl;
+            cout << "Jurusan: " << Mahasiswa::jurusan << endl;
+            cout << "IPK: " << Mahasiswa::IPK << endl;
+        }
+};
+
+class Polos{
+    public:
+        string data_string;
+        int data_integer;
 };
 
 int main(int argc, char const *argv[]){
-    Mahasiswa data1;
-    data1.nama = "Azka";
-    data1.NIM = "13523137";
-    data1.jurusan = "IF";
-    data1.IPK = 3;
-    cout << "Nama saya adalah: " << data1.nama << endl;
-    cout << "NIM: " << data1.NIM << endl;
-    cout << "Jurusan: " << data1.jurusan << endl;
-    cout << "IPK: " << data1.IPK << endl;
+    Mahasiswa data1 = Mahasiswa("Azka", "13523137", "IF", 3);
     return 0;
 }
 

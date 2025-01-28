@@ -57,8 +57,8 @@ class Mahasiswa{
 
 
 int main(int argc, char const *argv[]){
-    Mahasiswa data1 = Mahasiswa("Azka", "13523137", "IF", 3);
-    Mahasiswa data2 = Mahasiswa("Hello", "13523136", "IF", 5);
+    Mahasiswa data1 = Mahasiswa("Azka", "12345", "IFFF", 3);
+    Mahasiswa data2 = Mahasiswa("Hello", "12345", "IFFF", 5);
     data1.tampilkanMahasiswa();
     data2.tampilkanMahasiswa();
 

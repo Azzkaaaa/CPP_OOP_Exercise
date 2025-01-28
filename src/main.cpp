@@ -14,7 +14,7 @@ class Mahasiswa{
 int main(int argc, char const *argv[]){
     Mahasiswa data1;
     data1.nama = "Azka";
-    data1.NIM = "13523137";
+    data1.NIM = "12345";
     data1.jurusan = "IF";
     data1.IPK = 3;
     cout << "Nama saya adalah: " << data1.nama << endl;

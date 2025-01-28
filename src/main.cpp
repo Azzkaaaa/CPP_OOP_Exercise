@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <fstream>
 
 using namespace std;
 
@@ -9,65 +10,70 @@ class Mahasiswa{
         string nama;
         string NIM;
         string jurusan;
-        int IPK;
 
-        Mahasiswa(string inputNama, string inputNIM, string inputJurusan, int inputIPK){// Constructor (Termasuk Methods)
+        Mahasiswa(string inputNama, string inputNIM, string inputJurusan){// Constructor (Termasuk Methods)
             Mahasiswa::nama = inputNama;
             Mahasiswa::NIM = inputNIM;
             Mahasiswa::jurusan = inputJurusan;
-            Mahasiswa::IPK = inputIPK;
-            // cout << "Nama: " << Mahasiswa::nama << endl;
-            // cout << "NIM: " << Mahasiswa::NIM << endl;
-            // cout << "Jurusan: " << Mahasiswa::jurusan << endl;
-            // cout << "IPK: " << Mahasiswa::IPK << endl;
         }
 
-        void tampilkanMahasiswa(){// Methods tanpa parameter dan return
-            cout << "Nama: " << Mahasiswa::nama << endl;
-            cout << "IPK: " << Mahasiswa::NIM << endl;
-            cout << "Jurusan: " << Mahasiswa::jurusan << endl;
-            cout << "IPK: " << Mahasiswa::IPK << endl;
-            cout << "\n" << ends;
-        }
-
-        void ubahNama(const char* namaBaru){// Methods dengan parameter tanpa return
-            Mahasiswa::nama = namaBaru;
-        }
-
-        string getNama(){// Methods tanpa parameter dengan return
-            return Mahasiswa::nama;
-        }
-
-        int getIPK(){// Methods tanpa parameter dengan return
-            return Mahasiswa::IPK;
-        }
-
-        int katrolIPK(const int &tambahanNilai){// Methods dengan 22nya
-            return Mahasiswa::IPK + tambahanNilai;
+        string turnString(){
+            return nama + " " + NIM + " " + jurusan + "\n";
         }
 };
 
-// Methods di luar class
-// void tampilkanMahasiswa(Mahasiswa data){
-//     cout << data.nama << endl;
-//     cout << data.NIM << endl;
-//     cout << data.jurusan << endl;
-//     cout << data.IPK << endl;
-// }
+class DataBase{
+    public:
+        ifstream in;
+        ofstream out;
+        string fileName;
+
+        DataBase(const char* fileName){
+            DataBase::fileName = fileName;
+        }
+
+        void save(Mahasiswa data){
+            DataBase::out.open(DataBase::fileName, ios::app);
+            
+            DataBase::out << data.turnString();
+
+            DataBase::out.close();
+        }
+
+        void tampilkanDataBase(){
+            DataBase::in.open(DataBase::fileName, ios::in);
+            string nama, NIM, jurusan;
+            int i;
+            i = 1;
+            while (!DataBase::in.eof()){
+                DataBase::in >> nama;
+                DataBase::in >> NIM;
+                DataBase::in >> jurusan;
+                cout << i++ << "." << endl;
+                cout << nama << endl;
+                cout << NIM << endl;
+                cout << jurusan << endl;
+            }
+            DataBase::in.close();
+        }
+};
 
 
 int main(int argc, char const *argv[]){
-    Mahasiswa data1 = Mahasiswa("Azka", "13523137", "IF", 3);
-    Mahasiswa data2 = Mahasiswa("Hello", "13523136", "IF", 5);
-    data1.tampilkanMahasiswa();
-    data2.tampilkanMahasiswa();
+    string nama, NIM, jurusan;
+    cout << "Masukkan Data Mahasiswa" << endl;
+    cout << "Nama: ";
+    cin >> nama;
+    cout << "NIM: ";
+    cin >> NIM;
+    cout << "Jurusan: ";
+    cin >> jurusan;
 
-    data2.ubahNama("World");
-    data2.tampilkanMahasiswa();
 
-    cout << "data nama: " << data1.getNama() << endl;
-    cout << "IPK: " << data1.getIPK() << endl;
-    cout << "Katrol IPK: " << data1.katrolIPK(1) << endl;
+    Mahasiswa dataMahasiswa = Mahasiswa(nama, NIM, jurusan);
+    DataBase dataBase = DataBase("Data.txt");
+
+    dataBase.tampilkanDataBase();
     return 0;
 }
 

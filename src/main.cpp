@@ -29,7 +29,7 @@ class Polos{
 };
 
 int main(int argc, char const *argv[]){
-    Mahasiswa data1 = Mahasiswa("Azka", "13523137", "IF", 3);
+    Mahasiswa data1 = Mahasiswa("Azka", "12345", "IF", 3);
     return 0;
 }
 
